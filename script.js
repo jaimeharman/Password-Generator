@@ -1,82 +1,64 @@
-// Assignment Code
+// Generate a password
 var generateBtn = document.querySelector("#generate");
-// Create a generated password
-// Store selections for password generations
-  // Create one master array of choices
-// Password matches selection
-// Password is generated - function
-  // Loop is how many characters user selected
-    // Math.random to get character
-// Password is displayed in alert or presented in box
-
-// Length of password - 8 characters, no more than 128 characters
-// Lowercase
-// Uppercase
-// Numbers
-// Special characters
-var numericArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+// Created arrays to include numbers, lowercase letters and special characters
+var numericArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var lowerCaseArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var specialCharactersArr = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"
 ]
-
-
-// Create series of prompts with password criteria
-//var length = prompt("How many characters would you like for your password?");
-  //Alert if selection is not within parameters
-  promptLength()
-  
+//Created prompts for user to select how many characters for password
 function promptLength() {
   var length = prompt("How many characters would you like for your password?");
- 
+//User must choose between 8 and 128 characters for password. No more or less. User can confirm or deny use of any of the array choices. 
   if (parseInt(length) >= 8 && parseInt(length) <= 128) {
-    var userChoices = {}
+    var userChoices = {};
     var lowerCase = confirm("Will you be using lower case letters?");
     var upperCase = confirm("Will you be using upper case letters?");
     var numeric = confirm("Will you be using numbers?");
-    var specialCharacters = confirm("Will you be using special characters?");  
-  userChoices.lowerCase = lowerCase
-  userChoices.upperCase = upperCase
-  userChoices.numeric = numeric
-  userChoices.specialCharacters = specialCharacters
-    
-    generatePassword(length, userChoices)
-    return
-  }  
-    alert("Please select a value between 8 and 128")
-    promptLength() 
+    var specialCharacters = confirm("Will you be using special characters?");
+    userChoices.lowerCase = lowerCase;
+    userChoices.upperCase = upperCase;
+    userChoices.numeric = numeric;
+    userChoices.specialCharacters = specialCharacters;
+//If user goes outside of parameter choices, prompt returns to original question with an alert for user
+    generatePassword(length, userChoices);
+    return;
+  }
+  alert("Please select a value between 8 and 128");
+  promptLength();
 }
-
 function generatePassword(length, userChoices) {
-console.log(length, userChoices)
+  var randomArr = []
+  var i = 0
+//If user selects a condition/expression and it it's true, the 
+  while ( i < length) {
+    if (userChoices.lowerCase) {
+      var selectedLowercase = lowerCaseArr[Math.floor(Math.random() * lowerCaseArr.length)];
+      randomArr.push(selectedLowercase)
+      i++
+    }
 
-if (userChoices.lowerCase) {
-  //randomly select from array
+    if (userChoices.upperCase) {
+      var selectedUpperCase = lowerCaseArr[Math.floor(Math.random() * lowerCaseArr.length)];
+      var cappedSelectedupperCase = selectedUpperCase.toUpperCase()
+      randomArr.push(cappedSelectedupperCase)
+      i++
+    }
+
+    if (userChoices.numeric) {
+      var selectedNumeric = numericArr[Math.floor(Math.random() * numericArr.length)];
+      randomArr.push(selectedNumeric)
+      i++
+    }
+
+    if (userChoices.specialCharacters) {
+      var selectedSpecialCharacters = specialCharactersArr[Math.floor(Math.random() * specialCharactersArr.length)];
+      randomArr.push(selectedSpecialCharacters)
+      i++
+    }
+  }
+  var password = randomArr.join("")
+  writePassword(password)
 }
-
-if (userChoices.upperCase) {
-  //randomly select from array
-}
-
-if (userChoices.numeric) {
-  //randomly select from array
-}
-
-if (userChoices.specialCharacters) {
-  //randomly select from array
-}
-
-
-}
-
-// Determine what choices user wants
-
-// Get X special chars, where X is length
-
-// Concat all the chars into one
-
-// var password
-// writePassword(password)
-
 
 // Write password to the #password input
 function writePassword(password) {
@@ -84,4 +66,4 @@ function writePassword(password) {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", promptLength);
