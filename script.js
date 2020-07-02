@@ -19,7 +19,7 @@ var lowerCaseArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
 var specialCharactersArr = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"
 ]
 
-var userChoices = []
+
 // Create series of prompts with password criteria
 //var length = prompt("How many characters would you like for your password?");
   //Alert if selection is not within parameters
@@ -29,27 +29,58 @@ function promptLength() {
   var length = prompt("How many characters would you like for your password?");
  
   if (parseInt(length) >= 8 && parseInt(length) <= 128) {
+    var userChoices = {}
     var lowerCase = confirm("Will you be using lower case letters?");
     var upperCase = confirm("Will you be using upper case letters?");
     var numeric = confirm("Will you be using numbers?");
     var specialCharacters = confirm("Will you be using special characters?");  
-    userChoices.push(lowerCase, upperCase, numeric, specialCharacters)
-generatePassword()
+  userChoices.lowerCase = lowerCase
+  userChoices.upperCase = upperCase
+  userChoices.numeric = numeric
+  userChoices.specialCharacters = specialCharacters
+    
+    generatePassword(length, userChoices)
     return
   }  
     alert("Please select a value between 8 and 128")
     promptLength() 
 }
 
+function generatePassword(length, userChoices) {
+console.log(length, userChoices)
+
+if (userChoices.lowerCase) {
+  //randomly select from array
+}
+
+if (userChoices.upperCase) {
+  //randomly select from array
+}
+
+if (userChoices.numeric) {
+  //randomly select from array
+}
+
+if (userChoices.specialCharacters) {
+  //randomly select from array
+}
+
+
+}
+
+// Determine what choices user wants
+
+// Get X special chars, where X is length
+
+// Concat all the chars into one
+
+// var password
+// writePassword(password)
 
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+function writePassword(password) {
+  document.querySelector("#password").value = password;
 }
 
 // Add event listener to generate button
