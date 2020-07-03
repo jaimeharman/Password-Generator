@@ -29,7 +29,7 @@ function promptLength() {
 function generatePassword(length, userChoices) {
   var randomArr = []
   var i = 0
-//If user selects a condition/expression and it it's true, the 
+//If user selects an option, computer will go through options until the condition becomes false. If false, the loop will end.
   while ( i < length) {
     if (userChoices.lowerCase) {
       var selectedLowercase = lowerCaseArr[Math.floor(Math.random() * lowerCaseArr.length)];
