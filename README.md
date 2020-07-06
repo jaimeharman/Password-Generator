@@ -11,7 +11,3 @@ Password generator loops through multiple arrays:
 User can select an option for a password between 8-128 characters that may contain any of the optional arrays. 
 
 The loop function evaluates the userChoice conditions as it passes through the loop, checking for true statements. The while loop was used because we wanted the result to add to the existing characters, creating the password length selected. Otherwise, with a for loop, the results were being multiplied and creating very long passwords. 
-
-
-
- 
